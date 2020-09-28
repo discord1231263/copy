@@ -59,10 +59,8 @@ client.on('message', (message) => {
     return message.reply("아~ 그 메이플 충?");
   }
    if(message.content == '이하율 알아?') {
-    return message.reply("아~ 그 임민수 따까리??");
-  }
-    if(message.content == '이하율 알아?') {
-    return message.reply("g");
+    return message.reply("아~ 그 임민수 따까리??
+||https://cdn.discordapp.com/attachments/759667844430168074/759995177422684220/image0.jpg||");
   }
  
   if(message.content.startsWith('!전체공지')) {
