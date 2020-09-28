@@ -61,7 +61,9 @@ client.on('message', (message) => {
    if(message.content == '이하율 알아?') {
     return message.reply("아~ 그 임민수 따까리?? https://cdn.discordapp.com/attachments/759667844430168074/759995177422684220/image0.jpg");
   }
- 
+   if(message.content == '최유민 알아?') {
+    return message.reply("이이잉~~~~ 기뭐링~~~\n https://cdn.discordapp.com/attachments/759706035803521054/760156715756290098/image0.jpg");
+  }
   if(message.content.startsWith('!전체공지')) {
     if(checkPermission(message)) return
     if(message.member != null) { // 채널에서 공지 쓸 때
