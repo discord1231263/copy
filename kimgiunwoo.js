@@ -55,8 +55,8 @@ client.on('message', (message) => {
   if(message.content == '임민수 알아?') {
     return message.reply("아~ 그 남고 숙사련ㅋㅋ");
   }
-  if(message.content == '임민수 알아?') {
-    return message.reply("아~ 그 남고 숙사련ㅋㅋ");
+  if(message.content == '황우솔 알아?') {
+    return message.reply("아~ 그 메이플 충?");
   }
  
  
