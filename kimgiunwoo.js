@@ -55,6 +55,10 @@ client.on('message', (message) => {
   if(message.content == '임민수 알아?') {
     return message.reply("아~ 그 남고 숙사련ㅋㅋ");
   }
+  if(message.content == '임민수 알아?') {
+    return message.reply("아~ 그 남고 숙사련ㅋㅋ");
+  }
+ 
  
   if(message.content.startsWith('!전체공지')) {
     if(checkPermission(message)) return
