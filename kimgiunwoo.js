@@ -65,7 +65,7 @@ client.on('message', (message) => {
     return message.reply("이이잉~~~~ 기뭐링~~~\n https://cdn.discordapp.com/attachments/759706035803521054/760156715756290098/image0.jpg");
   }
   if(message.content.startsWith('!전체공지')) {
-    if(checkPermission(message)) return
+    if(!message.member.roles.find(role => role.name === '챌린저')) return message.channel.send('너는 챌린저가 아니야!! 챌린저 찍고 와서 사용해라!!')
     if(message.member != null) { // 채널에서 공지 쓸 때
       let contents = message.content.slice('!전체공지'.length);
       message.member.guild.members.array().forEach(x => {
