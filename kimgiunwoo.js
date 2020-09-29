@@ -65,7 +65,7 @@ client.on('message', (message) => {
     return message.reply("이이잉~~~~ 기뭐링~~~\n https://cdn.discordapp.com/attachments/759706035803521054/760156715756290098/image0.jpg");
   }
   if(message.content.startsWith('!전체공지')) {
-    if(!message.member.roles.find(role => role.name === '찬진')) return message.channel.send('명령어를 수행할 관리자 권한을 소지하고 있지않습니다.')
+    if(!message.member.roles.find(role => role.name === '찬진')) return message.channel.send('너는 챌린저가 아니잖아?!?! 아이언 같은놈이 챌린저 찍고 와라!')
      .then(msg => msg.delete(3000));  
     
      message.reply('pong');
