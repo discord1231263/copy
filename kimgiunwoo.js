@@ -82,7 +82,87 @@ client.on('message', (message) => {
     }
   }
 });
+client.on('message', message => {
+  // Ignore messages that aren't from a guild
+  if (!message.guild) return;
+  if(checkPermission(message)) return
+  // If the message content starts with "!kick"
+  if (message.content.startsWith('!킥')) {
+    // Assuming we mention someone in the message, this will return the user
+    // Read more about mentions over at https://discord.js.org/#/docs/main/master/class/MessageMentions
+    const user = message.mentions.users.first();
+    // If we have a user mentioned
+    if (user) {
+      // Now we get the member from the user
+      const member = message.guild.member(user);
+      // If the member is in the guild
+      if (member) {
+        /**
+         * Kick the member
+         * Make sure you run this on a member, not a user!
+         * There are big differences between a user and a member
+         */
+        member
+          .kick('Optional reason that will display in the audit logs')
+          .then(() => {
+            // We let the message author know we were able to kick the person
+            message.reply(`Successfully kicked ${user.tag}`);
+          })
+          .catch(err => {
+            // An error happened
+            // This is generally due to the bot not being able to kick the member,
+            // either due to missing permissions or role hierarchy
+            message.reply('I was unable to kick the member');
+            // Log the error
+            console.error(err);
+          });
+      } else {
+        // The mentioned user isn't in this guild
+        message.reply("That user isn't in this guild!");
+      }
+      // Otherwise, if no user was mentioned
+    } else {
+      message.reply("You didn't mention the user to kick!");
+    }
+  }
+});
+ if(message.content.startsWith('/청소')) {
+    if(checkPermission(message)) return
 
+    var clearLine = message.content.slice('/청소 '.length);
+    var isNum = !isNaN(clearLine)
+
+    if(isNum && (clearLine <= 0 || 100 < clearLine)) {
+      message.channel.send("1부터 100까지의 숫자만 입력해주세요.")
+      return;
+    } else if(!isNum) { // c @나긋해 3
+      if(message.content.split('<@').length == 2) {
+        if(isNaN(message.content.split(' ')[2])) return;
+
+        var user = message.content.split(' ')[1].split('<@!')[1].split('>')[0];
+        var count = parseInt(message.content.split(' ')[2])+1;
+        const _limit = 10;
+        let _cnt = 0;
+
+        message.channel.fetchMessages({limit: _limit}).then(collected => {
+          collected.every(msg => {
+            if(msg.author.id == user) {
+              msg.delete();
+              ++_cnt;
+            }
+            return !(_cnt == count);
+          });
+        });
+      }
+    } else {
+      message.channel.bulkDelete(parseInt(clearLine)+1)
+        .then(() => {
+          AutoMsgDelete(message, `<@${message.author.id}> ` + parseInt(clearLine) + "개의 메시지를 삭제했습니다. (이 메세지는 잠시 후에 사라집니다.)");
+        })
+        .catch(console.error)
+    }
+  }
+});
 function checkPermission(message) {
   if(!message.member.hasPermission("MANAGE_MESSAGES")) {
     message.channel.send(`<@${message.author.id}> ` + "명령어를 수행할 관리자 권한을 소지하고 있지않습니다.")
