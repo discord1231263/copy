@@ -126,10 +126,10 @@ client.on('message', message => {
     }
   }
 });
- if(message.content.startsWith('/청소')) {
+ if(message.content.startsWith('/cc')) {
     if(checkPermission(message)) return
 
-    var clearLine = message.content.slice('/청소 '.length);
+    var clearLine = message.content.slice('/cc '.length);
     var isNum = !isNaN(clearLine)
 
     if(isNum && (clearLine <= 0 || 100 < clearLine)) {
